@@ -1,0 +1,43 @@
+﻿<?xml version="1.0"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    android:versionCode="1"
+    android:versionName="1.0"
+    android:installLocation="auto">
+
+    <!-- Qt模块权限注入点，勿删（官方要求保留，缺失会导致Qt模块无法注入所需权限） -->
+    <!-- %%INSERT_PERMISSIONS -->
+    <!-- %%INSERT_FEATURES -->
+
+    <!-- 行车记录仪：相机 + 网络（INTERNET为安装时权限，无需运行时弹窗） -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- UDP发现(:9002)——WiFi状态查询 + 接收多播/广播包 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+    <application
+        android:name="org.qtproject.qt.android.bindings.QtApplication"
+        android:label="行车记录仪"
+        android:icon="@mipmap/ic_launcher"
+        android:hardwareAccelerated="true">
+
+        <activity
+            android:name="org.qtproject.qt.android.bindings.QtActivity"
+            android:label="行车记录仪"
+            android:launchMode="singleTop"
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <!-- 强制要求：加载哪个so库，必须等于CMake里qt_add_executable的目标名 -->
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="Dvrqt" />
+        </activity>
+    </application>
+</manifest>

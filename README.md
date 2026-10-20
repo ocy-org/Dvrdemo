@@ -36,3 +36,7 @@ APP端，在”实时“菜单中，点击【开始录像】按钮之后，会�
 ## 环境编译方法
 PC控制端，本人是在window QT MinGW下编译的，方便通用移植。
 APP客户端，本人是在ubuntu安装的QT andriod环境下编译的。
+
+## 篇外
+详细介绍可以查看
+https://blog.csdn.net/liangyuna8787/article/details/168342822?spm=1001.2014.3001.5502
